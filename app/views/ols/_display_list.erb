@@ -1,0 +1,7 @@
+<% if not @data.nil? %>
+  <ol>
+    <% @data.keys.each do |key| %>
+      <li value="<%=key%>"><%=@data[key]%></li>
+    <%end%>
+  </ol>
+<%end%>

@@ -1,0 +1,27 @@
+defaults: &defaults
+  parameterize_keys: true
+  raise_not_found_error: false
+  
+development:
+  host: localhost
+  database: didact_development
+  persist_in_safe_mode: true
+  <<: *defaults
+
+test:
+  host: localhost
+  database: didact_test
+  <<: *defaults
+
+  
+# set these environment variables on your prod server
+production:
+  database: db
+  uri: <%= ENV['MONGOHQ_URL'] %>
+  <<: *defaults
+
+  # slaves:
+  #   - host: slave1.local
+  #     port: 27018
+  #   - host: slave2.local
+  #     port: 27019

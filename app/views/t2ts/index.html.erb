@@ -1,0 +1,28 @@
+<h3>All available text-to-text Pogos</h3>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @items.each do |t2t| %>
+    <tr>
+      <td><span style="font-size:2em"><%=t2t.name%></span> <br/>
+        <%= link_to 'Show', t2t %>
+        | <%= link_to 'Learn all', url_for(:action => 'learn', :id => t2t, :page => 0) %>
+        | <%= link_to 'Quiz all', url_for(:action=>'testall', :id => t2t) %>
+        | <%= link_or_text(has_history?(t2t), 'Revise', url_for(:action=>'revise', :id=>t2t), 'Log in to revise pogos you\'ve tried before') %>
+        <% if can_edit?(t2t) %>
+          | <%= link_to 'Edit', edit_ul_path(t2t) %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<br />
+
+<%= link_or_text(can_create?, 'Create new text-to-text Pogo', new_t2t_path, 'Log in to create pogos') %>

@@ -1,0 +1,20 @@
+<h3>Show me what you know:</h3>
+
+<%=form_for(:ans, :url => @post_url, :method => :put) do |fo|%>
+  <ul>
+    <% first = true %>
+    <% @data.each_index do |index| %>
+      <% 
+      options = {:autocomplete => 'off'} 
+      if first then options[:autofocus] = 'autofocus' end
+    %>
+      <li><%=fo.text_field index, options%></li>
+      <% first = false %>
+    <%end%>
+  </ul>
+  <%= fo.submit 'I\'m done.', class: "btn" %>
+<%end%>
+
+<br/>
+
+<%= link_to 'Back', :root %>

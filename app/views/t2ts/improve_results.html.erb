@@ -1,0 +1,15 @@
+<%
+@right = @results[:right].select { |key, value| @data.has_key?(key) }
+@missed = @data.select { |key, value| not @results[:right].has_key?(key) }
+%>
+
+<h3><%=@right.length%> out of <%=@right.length + @missed.length%>:</h3>
+
+<%= render "results_display" %>
+
+<%= link_to 'Try again', url_for(:action => :improve) %> |
+<%= link_to 'Back to ' + @item.name, url_for(:action => :show) %>
+
+<br/>
+<br/>
+<%= link_to 'Back to menu', :root %>

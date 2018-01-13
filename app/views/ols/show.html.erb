@@ -1,0 +1,13 @@
+<h3><%=@item.name%></h3>
+
+<%= render 'display_list' %>
+
+<% if has_history?(@item) %>
+  <%= link_to 'Revise', url_for(:action=>'revise', :id=>@item) %> |
+<% end %>
+<%= link_to 'Learn all', url_for(:action=>'learn', :id=>@item, :page=>0) %>
+<br/><br/>
+<% if can_edit?(@item) %>
+  <%= link_to 'Edit', edit_ol_path(@item) %> |
+<% end %>
+<%= link_to 'Back to menu', :root %>

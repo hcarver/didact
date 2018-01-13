@@ -1,0 +1,15 @@
+<%
+@right = @results[:right].select { |key,value| @data.has_key?(key) }
+@wrong = @results[:wrong].select { |key,value| @data.has_key?(key) }
+%>
+
+<h3><%=@right.length%> out of <%=@right.length + @wrong.length%>:</h3>
+
+<%= render "results_display" %>
+
+<%= link_to 'Try these again', url_for(:action => :testall) %> |
+<%= link_to 'Back to ' + @item.name, url_for(:action => :show) %>
+
+<br/>
+<br/>
+<%= link_to 'Back to menu', :root %>

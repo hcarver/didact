@@ -1,0 +1,26 @@
+<%= form_for(@item) do |f| %>
+  <% if (not @item.errors.nil?) and @item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@item.errors.count, "error") %> stopped us saving:</h2>
+
+      <ul>
+        <% @item.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.label :name, 'Name:' %>
+  <%= f.text_field :name %>
+
+  <br/>
+  <br/>
+  Items:<br/>
+  <% initialValue = if @data.nil? or @data.length == 0 then "Item 1\nItem 2\nItem 3" else @data.join("\n") end%>
+  <%= f.text_area :items, :size => '30x10', :value=> initialValue%>
+
+  <div class="actions">
+    <%= f.submit 'Update!', class: "btn"%>
+  </div>
+<% end %>

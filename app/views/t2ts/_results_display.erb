@@ -1,0 +1,41 @@
+<%if not @right.nil? and not @right.empty?%>
+  You <span style="color:#080; font-weight:bold;">aced</span> these:
+  <div class="row">
+    <% @right.each do |key, value| %>
+      <div class="term_row span12">
+        <%= key %>
+        <span class="term_answer">
+          <%= value %>
+        </span>
+      </div>
+    <%end%>
+  </div>
+<%end%>
+
+<% if not @missed.nil? and not @missed.empty? %>
+  You <span style="color:#800; font-weight:bold;">forgot</span> these:
+  <div class="row">
+    <% @missed.each do |key, value| %>
+      <div class="term_row span12">
+        <%= key %>
+        <span class="term_answer">
+          <%= value %>
+        </span>
+      </div>
+    <%end%>
+  </div>
+<%end%>
+
+<%if not @extra.nil? and not @extra.empty?%>
+  These were <span style="color:#800; font-weight:bold;">wrong</span>:
+  <div class="row">
+    <% @extra.each do |key, value| %>
+      <div class="term_row span12">
+        <%= key %>
+        <span class="term_answer">
+          <%= value %>
+        </span>
+      </div>
+    <%end%>
+  </div>
+<%end%>

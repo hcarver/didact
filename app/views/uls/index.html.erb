@@ -1,0 +1,28 @@
+<h3>All available unordered Pogos</h3>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @items.each do |ul| %>
+    <tr>
+      <td><span style="font-size:2em"><%=ul.name%></span> <br/>
+        <%= link_to 'Show', ul %>
+        | <%= link_to 'Learn all', url_for(:action => 'learn', :id => ul, :page => 0) %>
+        | <%= link_to 'Quiz all', url_for(:action=>'testall', :id => ul) %>
+        | <%= link_or_text(has_history?(ul), 'Revise', url_for(:action=>'revise', :id=>ul), 'Log in to revise pogos you\'ve tried before') %>
+        <% if can_edit?(ul) %>
+          | <%= link_to 'Edit', edit_ul_path(ul) %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<br />
+
+<%= link_or_text(can_create?, 'Create new unordered Pogo', new_ul_path, 'Log in to create pogos') %>

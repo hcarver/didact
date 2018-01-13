@@ -1,0 +1,10 @@
+<% if not @data.nil? %>
+  <div class="row">
+    <% @data.each_key do |key| %>
+      <div class="term_row span12">
+        <%=!key ? "" : key%>
+        <span class="term_answer"><%=!@data[key] ? "" : @data[key]%></span>
+      </div>
+    <%end%>
+  </div>
+<%end%>

@@ -1,0 +1,12 @@
+<% if not @data.nil? %>
+  <div class="i2t row">
+    <% @data.each_key do |key| %>
+      <div class="term_row span12">
+        <%=image_tag(@data[key][0])%>
+        <span class="term_answer">
+          <%=@data[key][1]%>
+        </span>
+      </div>
+    <%end%>
+  </div>
+<%end%>

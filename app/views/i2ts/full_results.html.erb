@@ -1,0 +1,16 @@
+<%
+@right = @data.select{|item, value| @results[:right].has_key?(item)}
+@extra = @results[:wrong].select { |key,value| not @data.has_key?(key) }
+@missed = @data.select{|item, value| not @results[:right].has_key?(item)}
+%>
+
+<h3><%=@right.length%> out of <%=@data.length%>:</h3>
+
+<%= render 'results_display' %>
+
+<%= link_to 'Try again', url_for(:action => :testall) %>
+| 
+<%= link_to 'Back to ' + @item.name, url_for(:action => :show) %>
+<br/>
+<br/>
+<%= link_to 'Back to menu', :root %>

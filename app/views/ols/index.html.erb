@@ -1,0 +1,28 @@
+<h1>All available ordered Pogos</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @items.each do |ol| %>
+    <tr>
+      <td><span style="font-size:2em"><%=ol.name%></span> <br/>
+        <%= link_to 'Show', ol %>
+        | <%= link_to 'Learn all', url_for(:controller => 'ols', :action => 'learn', :id => ol, :page => 0) %>
+        | <%= link_to 'Quiz all', url_for(:action=>'testall', :id => ol) %>
+        | <%= link_or_text(has_history?(ol), 'Revise', url_for(:action=>'revise', :id=>ol), 'Log in to revise pogos you\'ve tried before') %>
+        <% if can_edit?(ol) %>
+          | <%= link_to 'Edit', edit_ol_path(ol) %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
+
+<br />
+
+<%= link_or_text(can_create?, 'Create new ordered Pogo', new_ol_path, 'Log in to create pogos') %>

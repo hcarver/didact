@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>pogohop: making learning easy, making teaching easy</title>
+    <link href='http://fonts.googleapis.com/css?family=Fugaz+One' rel='stylesheet' type='text/css'>
+    <%= stylesheet_link_tag    "application" %>
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %> <meta name="google-site-verification" content="wTs8U5fGWfI1S4JiB_GpDwoCBU3H-VgcZgWkd-UZdcI" />
+  </head>
+  <body>
+    <div id="top_bar">
+      <div id="top_bar_bg"></div>
+      <div id="top_bar_content">
+        <a href="/" id="top_bar_logo" class="logo">Pogohop</a>
+        <div id="top_login_items">
+          <% if not user_signed_in? %>
+            Login via:
+          <% else %>
+            Hi <%= current_user.name %>!
+          <% end %>
+          <ul id="top_bar_login">
+            <%= render 'devise/menu/registration_items' %>
+            <%= render 'devise/menu/login_items' %>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div id="page_content" class="rounded transparent">
+          <div id="messages">
+            <%- flash.each do |name, msg| -%>
+              <%= content_tag :div, msg, :id => "#{name}" if msg.is_a?(String) %>
+            <%- end -%>
+          </div>
+          <%= yield %>
+        </div>
+      </div> 
+    </div> 
+  </body>
+</html>

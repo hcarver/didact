@@ -1,0 +1,27 @@
+<%if not @right.nil? and not @right.empty?%>
+  You <span style="color:#080; font-weight:bold;">aced</span> these:
+  <div class="i2t row">
+    <% @right.each do |key, value| %>
+      <div class="term_row span12">
+        <%= image_tag(value[0]) %> 
+        <span class="term_answer">
+          <%= value[1] %>
+        </span>
+      </div>
+    <%end%>
+  </div>
+<%end%>
+
+<% if not @missed.nil? and not @missed.empty? %>
+  You <span style="color:#800; font-weight:bold;">forgot</span> these:
+  <div class="i2t row">
+    <% @missed.each do |key, value| %>
+      <div class="term_row span12">
+        <%= image_tag(value[0]) %>
+        <span class="term_answer">
+          <%= value[1] %>
+        </span>
+      </div>
+    <%end%>
+  </div>
+<%end%>

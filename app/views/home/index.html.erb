@@ -1,0 +1,64 @@
+<div>
+  <div class="hero-unit rounded">
+    <h1>Hi! Welcome to Pogohop</h1>
+    <p>Pogohop makes learning easy by doing the hard work for you.</p>
+</div>
+<div id="site_explanation" class="note rounded">
+  <p>
+    Pogohop takes something you want to learn, breaks it up into chunks, then helps you learn it
+    and test yourself. 
+  </p>
+  <p>
+    If the thing you want to learn isn't already here, just log in and add it. It's really easy!
+  </p>
+  <p>
+    Pogohop remembers your progress when you're logged in and helps you revise only the things 
+    you're worst at.
+  </p>
+  <p>
+    If you have any comments, criticism or questions, we'd love to hear from you at 
+    <a href="mailto:pogohop@pogohop.com">pogohop@pogohop.com</a>
+  </p>
+</div>
+
+<hr/>        
+<h1>What do you want to learn?</h1>
+
+</div>
+
+<div id="pogolist">
+  <div class="row">
+    <% 0.upto(@items.size - 1) do |index| %>
+      <% item = @items[index] %>
+      <div class="span4">
+        <h2><%=item.name%></h2>
+        <p>
+          <% controller = item.class.to_s.tableize%>
+
+          <%= link_to 'Show me', url_for(:controller=> controller, :action=>:show, :id=>item) %>
+          | <%= link_to 'Teach me', url_for(:controller=> controller, :action => 'learn', :id => item, :page => 0) %>
+          | <%= link_to 'Quiz me', url_for(:controller=> controller,:action=>'testall', :id => item) %>
+          <% if not user_signed_in? or has_history?(item) %>
+            | <%= link_or_text(has_history?(item), 'Revise', url_for(:controller=> controller, :action=>'revise', :id=>item), 'Log in to revise Pogos you\'ve tried before') %>
+          <%end%>
+          <% if can_edit?(item) %>
+            | <%= link_to 'Edit', url_for(:controller=> controller,:action=>'edit', :id=>item) %>
+          <% end %>
+        </p>
+      </div>
+
+      <% if index % 3 == 2 and index != @items.size - 1 %>
+      </div>
+      <div class ="row">
+      <% end %>
+
+    <% end %>
+  </div>
+</div>
+
+<br />
+
+<%= link_or_text(can_create?, 'Create new ordered Pogo', new_ol_path, 'Log in to create pogos') %> |
+<%= link_or_text(can_create?, 'Create new unordered Pogo', new_ul_path, 'Log in to create pogos') %> |
+<%= link_or_text(can_create?, 'Create new text-to-text Pogo', new_t2t_path, 'Log in to create pogos') %> |
+<%= link_or_text(can_create?, 'Create new image-to-text Pogo', new_i2t_path, 'Log in to create pogos') %>

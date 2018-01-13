@@ -1,0 +1,17 @@
+<%
+@right = @results[:right].select { |key,value| @data.has_key?(key) }
+@wrong = @results[:wrong].select { |key,value| @data.has_key?(key) }
+%>
+
+<h3><%=@right.length%> out of <%=@right.length + @wrong.length%>:</h3>
+
+<%= render "results_display" %>
+
+<%= link_to 'Try these again', @retry_url %>
+<% if not @progress_url.nil? %>
+  | <%= link_to 'Move on', @progress_url %>
+<%end%>
+
+<br/>
+<br/>
+<%= link_to 'Back to menu', :root %>

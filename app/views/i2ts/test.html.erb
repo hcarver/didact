@@ -1,0 +1,23 @@
+<h3>Show me what you know:</h3>
+
+<%=form_for(:ans, :url => @post_url, :method => :put) do |fo|%>
+  <div>
+    <% first = true %>
+    <% @data.each do |key, value| %>
+      <% 
+      options = {:autocomplete => 'off'} 
+      if first then options[:autofocus] = 'autofocus' end
+      first = false
+    %>
+      <div class="i2t">
+        <%=image_tag(@data[key][0])%>
+        <%=fo.text_field key, options%>
+      </div>
+    <%end%>
+  </div>
+  <%= fo.submit 'I\'m done.', class: "btn" %>
+<%end%>
+
+<br/>
+
+<%= link_to 'Back', :root %>

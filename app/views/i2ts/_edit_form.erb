@@ -1,0 +1,42 @@
+<%= form_for(@item, :html => {:multipart => true}) do |f| %>
+  <% if (not @item.errors.nil?) and @item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@item.errors.count, "error") %> stopped us saving:</h2>
+
+      <ul>
+        <% @item.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= f.label :name, 'Name:' %>
+  <%= f.text_field :name %>
+
+  <div id="i2t_update_form">
+
+    <% 1.upto(@item.items.length) do |i| %>
+      <%= f.fields_for :items, @item.items[i] do |builder| %>
+        <%= render "item_fields", f: builder %>
+        <%= link_to_remove_fields "Remove", builder%>
+      <% end %>
+    <% end %>
+
+    <%= f.fields_for(:items_attributes) do |builder|%>
+      <%= builder.fields_for(:new1) do |inner|%>
+        <%= render 'item_fields', f: inner %>
+      <% end %>
+
+      <%= builder.fields_for(:new2) do |inner|%>
+        <%= render 'item_fields', f: inner %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <%= link_to_add_fields "Add an item", f, :items, "#i2t_update_form" %><br/><br/>
+
+  <div class="actions">
+    <%= f.submit 'Done!', class: "btn"%>
+  </div>
+<% end %>

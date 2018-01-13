@@ -1,0 +1,22 @@
+<%if not @right.empty?%>
+  You <span style="color:#080; font-weight:bold;">aced</span> these:
+  <ol>
+    <% @right.keys.each do |index| %>
+      <li value="<%=index%>"><%=@right[index]%></li>
+    <%end%>
+  </ol>
+<%end%>
+
+<%if not @wrong.empty?%>
+  <span style="color:#800; font-weight:bold;">Not so hot</span> on these:
+  <ol>
+    <% @wrong.keys.each do |index| %>
+      <li value="<%=index%>"><%=@data[index]%> 
+        <% guess = @wrong[index].to_s%>
+        <% if (not guess.nil?) and (not guess.empty?) %>
+          (not "<%=guess%>")
+        <%end%>
+      </li>
+    <%end%>
+  </ol>
+<%end%>

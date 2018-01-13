@@ -1,0 +1,26 @@
+<%if not @right.nil? and not @right.empty?%>
+  You <span style="color:#080; font-weight:bold;">aced</span> these:
+  <ul>
+    <% @right.each do |value| %>
+      <li><%= value %></li>
+    <%end%>
+  </ul>
+<%end%>
+
+<% if not @missed.nil? and not @missed.empty? %>
+  You <span style="color:#800; font-weight:bold;">forgot</span> these:
+  <ul>
+    <% @missed.each do |value| %>
+      <li><%= value %></li>
+    <%end%>
+  </ul>
+<%end%>
+
+<%if not @extra.nil? and not @extra.empty?%>
+  These were <span style="color:#800; font-weight:bold;">wrong</span>:
+  <ul>
+    <% @extra.each do |value| %>
+      <li><%=value%></li>
+    <%end%>
+  </ul>
+<%end%>
